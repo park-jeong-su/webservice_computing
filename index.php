@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+$name = $_SESSION["name"];
+$biz = $_SESSION["biz"];
+// php 에서 console 창에 띄우기 위한 함수
+function debug_to_console( $data ) {
+
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+    echo $output;
+}
+debug_to_console($name);
+debug_to_console($biz);
+//debug_to_console($mname);
+//debug_to_console($mid);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,6 +56,35 @@
           theme: 'default'
         };
         </script>
+          <script>
+
+        function doit(){
+
+        console.log("click success!");
+
+        var email=$("#inputEmail").val();
+        var password=$("#inputpw").val();
+
+        //console.log(eid);
+        //console.log(password);
+
+        $.ajax({
+            type:"POST",
+            url:"./logincheck.php",
+            data:{email:email, password:password},
+            dataType:"text",
+            success:function(rtn){
+            alert("로그인의 성공하셨습니다.");
+            location.href="./index.php";
+            },
+            error:function(e){
+            }
+        });
+                   
+
+  }
+
+    </script>
     </head>
     <body class="">
 
@@ -41,7 +93,12 @@
     ?>
       <!-- Site Overlay -->
       <div class="site-overlay"></div>
+<?php
+if($name){
 
+}
+else{
+?>
         <header id="home">
             <div class="container-fluid">
                 <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
@@ -67,27 +124,30 @@ calling extra attention to featured content or information.</p>
                           <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">이메일</label>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="inputEmail3" placeholder="이메일">
+                              <input type="email" class="form-control" id="inputEmail" placeholder="이메일">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">비밀번호</label>
                             <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputPassword3" placeholder="비밀번호">
+                              <input type="password" class="form-control" id="inputpw" placeholder="비밀번호">
                             </div>
                           </div>
                         </form>
 
 
                         <p>
-                        <a class="btn btn-primary btn-lg" role="button">로그인</a> 
+                        <a class="btn btn-primary btn-lg" role="button" onclick="doit()">로그인</a> 
                         <a target="_blank" href="./signuppage.php" class="btn btn-lg btn-danger" role="button">회원가입</a>
                         </p>
                     </div>
                 </div>
             </div>
         </header>
-
+        
+        <?php
+        }
+        ?>
 
 
     <?php
