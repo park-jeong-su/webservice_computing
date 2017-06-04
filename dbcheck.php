@@ -5,7 +5,7 @@
 	$DB_ADDR ="localhost";
 	$DB_USER = "root";
 	$DB_PW = "1234";
-	$DB_NAME = "webser";
+	$DB_NAME = "web";
 
 	header("charset=UTF-8");
 
