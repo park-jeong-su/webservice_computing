@@ -17,10 +17,7 @@ debug_to_console($name);
 debug_to_console($biz);
 //debug_to_console($mname);
 //debug_to_console($mid);
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,6 +26,7 @@ debug_to_console($biz);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="viewport" content="initial-scale=1.0">
         <title>Mountain King - Bootstrap Template</title>
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/theme.css" rel="stylesheet">
@@ -48,6 +46,20 @@ debug_to_console($biz);
         <link rel="stylesheet" href="assets/css/animate.css">
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
         <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
+        <style>
+        #map{
+            height: 90%;
+        }
+        html,body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+        #home{
+            margin-bottom: 60px;
+        }
+        </style>
         <script>
         window.odometerOptions = {
           selector: '.odometer',
@@ -56,7 +68,7 @@ debug_to_console($biz);
           theme: 'default'
         };
         </script>
-          <script>
+        <script>
 
         function doit(){
 
@@ -94,12 +106,74 @@ debug_to_console($biz);
       <!-- Site Overlay -->
       <div class="site-overlay"></div>
 <?php
-if($name){
-
-}
-else{
-?>
+if($biz==1){
+    ?>
         <header id="home">
+            <div class="container-fluid">
+                <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-10">
+                            <a href="#" class="thumbnail logo">
+                                <img src="images/your_logo.png" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="col-md-1 col-md-offset-8 col-xs-2 text-center">
+                          <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
+                        </div>
+                    </div>
+                    <!-- 여기가 관리자 부분에 코드를 넣으면됨 -->
+                    <button type="button" class="btn btn-primary btn-lg">추가하기</button>
+
+                </div>
+            </div>
+        </header>
+    <?php
+    }
+    else if($biz==2){
+    ?>
+        <header id="home">
+            <div class="container-fluid">
+                <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-10">
+                            <a href="#" class="thumbnail logo">
+                                <img src="images/your_logo.png" alt="" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="col-md-1 col-md-offset-8 col-xs-2 text-center">
+                          <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
+                        </div>
+                    </div>
+                    <!-- 여기가 사용자 부분에 코드를 넣으면됨 -->
+                    <h1> 원하시는 항목을 선택해주세요. </h1>
+                    <select class="form-control">
+                    <option>레스토랑</option>
+                    <option>아웃백</option>
+                    </select>
+                    <div id="map">
+                    </div>
+                    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 37.4865570, lng: 126.802001},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbBoVlXZZfetZ4ffwiVA25MnpTC03H1HA&callback=initMap"
+    async defer></script>
+                </div>
+            </div>
+        </header>
+        
+        <?php
+        }
+        else{
+        ?>
+                <header id="home">
             <div class="container-fluid">
                 <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
                 <div class="container">
@@ -115,7 +189,7 @@ else{
                     </div>
                     <div class="jumbotron">
                         <h1><small>In the hall of the</small></br>
-						<strong>Mountain King</strong></h1>
+                        <strong>Mountain King</strong></h1>
                         <p>This is a simple hero unit, a simple jumbotron-style component for<br>
 calling extra attention to featured content or information.</p>
 
@@ -144,7 +218,6 @@ calling extra attention to featured content or information.</p>
                 </div>
             </div>
         </header>
-        
         <?php
         }
         ?>
@@ -168,6 +241,7 @@ calling extra attention to featured content or information.</p>
         <script src="assets/js/wow.min.js"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="assets/js/odometer.js"></script>
+
     </body>
 </html>
 

@@ -8,6 +8,6 @@
             <li><a href="#history">My History</a></li>
             <li><a href="#photos">Look my Photos</a></li>
             <li><a href="#contact">Get in Touch!</a></li>
-            <li><a href="http://www.themeinthebox.com/ourtheme/mountain-king-bootstrap-template/" target="_blank">Download</a></li>
+            <li><a href="logout.php">로그아웃</a></li>
         </ul>
       </nav>
