@@ -102,7 +102,7 @@ debug_to_console($biz);
     <!--
     function pop(){ 
         var url="popup.php";
-        var option="resizable=no, scrollbars=no,status=no,width=500,height=500";
+        var option="resizable=yes, scrollbars=yes,status=yes,width=1000,height=1000";
         window.open(url,'test',option);
     }
 //-->

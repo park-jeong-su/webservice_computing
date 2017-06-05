@@ -1,8 +1,8 @@
 <?php
-session_start();
+//session_start();
 
-$name = $_SESSION["name"];
-$biz = $_SESSION["biz"];
+//$name = $_SESSION["name"];
+//$biz = $_SESSION["biz"];
 // php 에서 console 창에 띄우기 위한 함수
 function debug_to_console( $data ) {
 
@@ -13,8 +13,7 @@ function debug_to_console( $data ) {
 
   echo $output;
 }
-debug_to_console($name);
-debug_to_console($biz);
+
 //debug_to_console($mname);
 //debug_to_console($mid);
 ?>
@@ -48,7 +47,7 @@ debug_to_console($biz);
       <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
       <style>
         #map{
-          height: 40%;
+          height: 500px;
         }
         html,body{
           height: 100%;
@@ -69,18 +68,10 @@ debug_to_console($biz);
         };
       </script>
       <!-- 팝업창뛰우기 -->
-      <script language="javascript">
+
+      <script type="text/javascript">
         <!--
-        function pop(){ 
-          var url="popup.php";
-          var option="resizable=no, scrollbars=no,status=no,width=1000,height=1000";
-          window.open(url,'test',option);
-        }
-//-->
-</script>
-<script type="text/javascript">
-  <!--
-  function add_item(){
+        function add_item(){
         // pre_set 에 있는 내용을 읽어와서 처리..
         var div = document.createElement('div');
         div.innerHTML = document.getElementById('pre_set').innerHTML;
@@ -89,108 +80,191 @@ debug_to_console($biz);
 
       function remove_item(obj){
         // obj.parentNode 를 이용하여 삭제
+        // 마지막 노드를 삭제하는 것으로 바꾸자.
         document.getElementById('field').removeChild(obj.parentNode);
       }
-//-->
-</script>
+    </script>
+    <script>
+
+      function dodo(){
+
+        console.log("click success!");
+
+        var resname=$("#resname").val();
+        var category=$("#category").val();notice
+        var notice=$("#notice").val();
+        var food=$("#food").val();
+        var price=$("#price").val();
+
+
+        console.log(resname);
+        console.log(category);
+        console.log(notice);
+        console.log(food);
+        console.log(price);
+
+        $.ajax({
+          type:"POST",
+          url:"./",
+          data:{email:email, password:password},
+          dataType:"text",
+          success:function(rtn){
+            alert("로그인의 성공하셨습니다.");
+            location.href="./index.php";
+          },
+          error:function(e){
+          }
+        });
+
+
+      }
+
+    </script>
 
 
 
-</head>
-<body class="">
+  </head>
+  <body class="">
 
 
-  <!-- Site Overlay -->
-  <div class="site-overlay"></div>
+    <!-- Site Overlay -->
+    <div class="site-overlay"></div>
 
-  <header id="home">
-    <div class="container-fluid">
-      <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
-      <div class="container">
-        <div class="row">
-
-
-        </div>
-        <!-- 이부분에 레스토랑 정보 입력 -->
-        <h1> 레스토랑의 정보를 입력해주세요 </h1>
-        <div class="jumbotron">
+    <header id="home">
+      <div class="container-fluid">
+        <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
+        <div class="container">
+          <div class="row">
 
 
-
-          <form class="form-horizontal">
-
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">식당이름</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail" placeholder="식당이름">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">카테고리</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputphone" placeholder="카테고리">
-              </div>
-            </div>
-
-
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">공지사항</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputpw" placeholder="공지사항">
-              </div>
-            </div>
-
-            <div id="field" class="form-group">
-
-            </div>
-
-            <p>
-
-            <a target="_blank" onclick="add_item()" class="btn btn-lg btn-danger" role="button">음식추가하기</a>
-            </p>
- 
-
-          </form>
-
-        </div>
-        <div id="pre_set" class="row" style="display:none">
-          <div class="col-md-4">
-            <input type="email" class="form-control" id="inputpw" placeholder="음식">
           </div>
-          <div class="col-md-4">
-            <input type="email" class="form-control" id="inputpw" placeholder="가격">
-          </div> 
-          
+          <!-- 이부분에 레스토랑 정보 입력 -->
+          <h1> 레스토랑의 정보를 입력해주세요 </h1>
+          <div class="jumbotron">
+
+
+
+            <form class="form-horizontal">
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">식당이름</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="resname" placeholder="식당이름">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">카테고리</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="category" placeholder="카테고리">
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">공지사항</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="notice" placeholder="공지사항">
+                </div>
+              </div>
+
+              <div id="field" class="form-group">
+
+              </div>
+
+              <p>
+
+                <a target="_blank" onclick="add_item()" class="btn btn-lg btn-danger" role="button">음식추가하기</a>
+              </p>
+
+
+            </form>
+
+          </div>
+
+          <!-- 음식 입력창 !! -->
+          <div id="pre_set" class="row" style="display:none">
+            <div class="col-md-4">
+              <input type="email" class="form-control" id="food" placeholder="음식">
+            </div>
+            <div class="col-md-4">
+              <input type="email" class="form-control" id="price" placeholder="가격">
+            </div> 
             <button type="button" class="btn btn-primary btn-lg" onclick="remove_item(this)">음식삭제하기</button>
-          
-        </div>
+          </div>
 
-        <h3>레스토랑의 위치를 선택해주세요</h3>
-        <div id="map">
-        </div>
-        <div class="jumbotron">
-          <form class="form-horizontal">
-            <p>
-              <a target="_blank" onclick="dodo()" class="btn btn-lg btn-danger" role="button">식당추가하기</a>
-            </p>
-          </form>
-        </div>
+          <h3>레스토랑의 위치를 선택해주세요</h3>
+          <!--여기가 지도다.-->
+          <div id="map">
+          </div>
+          <div class="jumbotron">
+            <form class="form-horizontal">
+              <p>
+                <a target="_blank" onclick="dodo()" class="btn btn-lg btn-danger" role="button">식당추가하기</a>
+              </p>
+            </form>
+          </div>
 
+        </div>
       </div>
-    </div>
-  </header>
-  <script>
-    var map;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 37.4865570, lng: 126.802001},
-        zoom: 8
-      });
-    }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW7DkrFwTai2f_ZVwEv3PqFcl8UcZ-YlA&callback=initMap"
-  async defer></script>
+    </header>
+
+
+    <script>
+      var markers = [];
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+      function addMarker(map,location) {
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+        markers.push(marker);
+        alert('Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng());
+        var infowindow = new google.maps.InfoWindow({
+          content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+        });
+        infowindow.open(map,marker);
+      }
+      function placeMarker(map, location) {
+
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+
+        alert('Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng());
+        var infowindow = new google.maps.InfoWindow({
+          content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+        });
+        infowindow.open(map,marker);
+      }
+      function myMap() {
+        var mapCanvas = document.getElementById("map");
+        var myCenter=new google.maps.LatLng(37.4865570,126.802001);
+        var mapOptions = {center: myCenter, zoom: 8};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        google.maps.event.addListener(map, 'click', function(event) {
+          deleteMarkers();
+          addMarker(map,event.latLng);
+        });
+      }
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW7DkrFwTai2f_ZVwEv3PqFcl8UcZ-YlA&callback=myMap"
+    async defer></script>
 
 
         <!-- Bootstrap core JavaScript
