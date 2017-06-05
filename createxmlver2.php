@@ -1,8 +1,10 @@
 <?php
     
 
-    
-    //include 'db_connect.php';
+    // php로 xml 출력 성공!!!!
+
+
+    //include 'db_connect.php';필요없음
     include("dbcheck.php");
  
     //$db = new DB_Connect;
