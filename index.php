@@ -97,6 +97,19 @@ debug_to_console($biz);
   }
 
     </script>
+<!-- 팝업창뛰우기 -->
+<script language="javascript">
+<!--
+function pop(){ 
+var url="popup.php";
+var option="resizable=no, scrollbars=no,status=no,width=500,height=500";
+window.open(url,'test',option);
+}
+//-->
+</script>
+
+
+
     </head>
     <body class="">
 
@@ -123,8 +136,11 @@ if($biz==1){
                         </div>
                     </div>
                     <!-- 여기가 관리자 부분에 코드를 넣으면됨 -->
-                    <button type="button" class="btn btn-primary btn-lg">추가하기</button>
-
+                    <button type="button" class="btn btn-primary btn-lg" onclick="pop()">추가하기</button>
+                    <!-- 여기에 이름 추가하는 로직 -->
+                    <button type="button" class="btn btn-primary btn-lg">Large button</button>
+                    <button type="button" class="btn btn-primary btn-lg">Large button</button>
+                    
                 </div>
             </div>
         </header>
