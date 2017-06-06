@@ -5,7 +5,7 @@
 	include("dbcheck.php");
 
 	
- 	$query ="SELECT biz,name FROM member WHERE email='$email' AND pass='$password'";
+ 	$query ="SELECT * FROM member WHERE email='$email' AND pass='$password'";
 	$result = mysqli_query($db,$query);
  
  	$row = mysqli_fetch_array($result);
@@ -13,10 +13,10 @@
 	
 	if($row){
 			session_start();
-			//$_SESSION["name"] = $eid;
+			$_SESSION["email"] = $email;
 			$_SESSION["name"] = $row['name'];
 			$_SESSION["biz"] = $row['biz'];
-			//$_SESSION["mid"] = $row['MID'];
+			$_SESSION["id"] = $row['id'];
 			echo("success");
 			exit();
 	}else{

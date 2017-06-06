@@ -1,8 +1,9 @@
 <?php
-//session_start();
+session_start();
 
-//$name = $_SESSION["name"];
-//$biz = $_SESSION["biz"];
+$name = $_SESSION["name"];
+$biz = $_SESSION["biz"];
+$email = $_SESSION["email"];
 // php 에서 console 창에 띄우기 위한 함수
 function debug_to_console( $data ) {
 
@@ -13,10 +14,12 @@ function debug_to_console( $data ) {
 
   echo $output;
 }
-
-//debug_to_console($mname);
+debug_to_console($name);
+debug_to_console($biz);
+debug_to_console($email);
 //debug_to_console($mid);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,14 +87,16 @@ function debug_to_console( $data ) {
         document.getElementById('field').removeChild(obj.parentNode);
       }
     </script>
-    <script>
 
+    <script>
+      var email="<?php echo($email);?>";
+      var lat,lng;
       function dodo(){
 
         console.log("click success!");
 
         var resname=$("#resname").val();
-        var category=$("#category").val();notice
+        var category=$("#category").val();
         var notice=$("#notice").val();
         var food=$("#food").val();
         var price=$("#price").val();
@@ -102,14 +107,16 @@ function debug_to_console( $data ) {
         console.log(notice);
         console.log(food);
         console.log(price);
-
+        console.log(lat);
+        console.log(lng);
+        console.log(email);
         $.ajax({
           type:"POST",
-          url:"./",
-          data:{email:email, password:password},
+          url:"./addres.php",
+          data:{email:email, resname:resname, category:category, notice:notice, lat:lat, lng:lng},
           dataType:"text",
           success:function(rtn){
-            alert("로그인의 성공하셨습니다.");
+            alert("식당추가에 성공하셨습니다.");
             location.href="./index.php";
           },
           error:function(e){
@@ -156,9 +163,15 @@ function debug_to_console( $data ) {
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">카테고리</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" id="category" placeholder="카테고리">
+                  <!--<input type="email" class="form-control" id="category" placeholder="카테고리">-->
+                  <select id="category" class="form-control">
+                    <option value="res">레스토랑</option>
+                    <option value="hospital">병원</option>
+                    <option value="hair">미용실</option>
+                  </select>
                 </div>
               </div>
+
 
 
               <div class="form-group">
@@ -231,9 +244,12 @@ function debug_to_console( $data ) {
         });
         markers.push(marker);
         alert('Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng());
+
         var infowindow = new google.maps.InfoWindow({
           content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
         });
+        lat=location.lat();
+        lng=location.lng();
         infowindow.open(map,marker);
       }
       function placeMarker(map, location) {

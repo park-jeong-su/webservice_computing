@@ -83,11 +83,9 @@
                 <!-- change the image in style.css to the class header .container-fluid [approximately row 50] -->
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3 col-xs-10">
-                            <a href="#" class="thumbnail logo">
-                                <img src="images/your_logo.png" alt="" class="img-responsive">
-                            </a>
-                        </div>
+   <?php
+  include("logo.php");
+  ?>
                         <div class="col-md-1 col-md-offset-8 col-xs-2 text-center">
                           <div class="menu-btn"><span class="hamburger">&#9776;</span></div>
                         </div>
