@@ -21,7 +21,7 @@
 	$id=$row['id'];
 	
 
-	$query = "INSERT INTO `res` (`id`, `resname`, `lat`, `long`, `memberid`, `category`, `notice`) VALUES (NULL, '".$resname."', '".$lat."', '".$lng."', '".$id."', '".$category."', '".$notice."')";
+	$query = "INSERT INTO `res` (`id`, `resname`, `lat`, `lon`, `memberid`, `category`, `notice`) VALUES (NULL, '".$resname."', '".$lat."', '".$lng."', '".$id."', '".$category."', '".$notice."')";
 	//$query = "insert into res(resname,lat,long,memberid,category,notice) values('".$resname."',".$lat.",".$lng.",".$id.",'".$category."','".$notice."')";
 
 	$result = mysqli_query($db,$query);
@@ -40,7 +40,7 @@
 			echo("-1");
 	}*/
 
-	include("createxmlver2.php");
+	
 	include("dbend.php");
 ?>
 

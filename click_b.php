@@ -193,7 +193,7 @@ include("selectres.php");
 
 	<script>
 		var lat = <?php echo $row["lat"]; ?>;
-		var lng = <?php echo $row["long"]; ?>;
+		var lng = <?php echo $row["lon"]; ?>;
 		//alert(lat);
 		//alert(lng);
 		function myMap() {

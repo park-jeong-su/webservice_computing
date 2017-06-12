@@ -19,7 +19,7 @@ debug_to_console($name);
 debug_to_console($biz);
 debug_to_console($email);
 //debug_to_console($mid);
-$xml=simplexml_load_file("get_res.xml") or die("Error: Cannot create object");
+//$xml=simplexml_load_file("get_res.xml") or die("Error: Cannot create object");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,41 +117,6 @@ $xml=simplexml_load_file("get_res.xml") or die("Error: Cannot create object");
 <!-- 지금 지도에 파싱하는건 아직 못함 ....카카오톡 그거 사이트 보고 변경하기. -->
 <script>
 
-  function gainmap(str) {
-    if (str=="") {
-      document.getElementById("txtHint").innerHTML="";
-      return;
-    }
-    if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } else {  // code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      // 이곳에서 json 으로 받으면 좋은데
-      //document.getElementById("txtHint").innerHTML=this.responseText;
-    }
-  }
-
-  xmlhttp.open("GET","gainmap.php?q="+str,true);
-  xmlhttp.send();
-}
-
-function parxml(){
-
-  GDownloadUrl("./get_res.xml", function(data) {
-    var xml = GXml.parse(data);
-    var markers = xml.documentElement.getElementsByTagName("marker");
-    for (var i = 0; i < markers.length; i++) {
-      var latlng = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
-        parseFloat(markers[i].getAttribute("lng")));
-      map.addOverlay(new GMarker(latlng));
-    }
-  });
-}
-
 </script>
 
 
@@ -210,10 +175,11 @@ else if($biz==2){
         <!-- 여기가 사용자 부분에 코드를 넣으면됨 -->
         <h1> 원하시는 항목을 선택해주세요. </h1>
         
-        <select id="category" class="form-control" onchange="parxml()">
-          <option value="res">레스토랑</option>
-          <option value="hospital">병원</option>
-          <option value="hair">미용실</option>
+        <select id="category" class="form-control" onchange="load(this.value)">
+        <option value="">선택하세요</option>
+          <option value="1">레스토랑</option>
+          <option value="2">병원</option>
+          <option value="3">미용실</option>
         </select>
         <div id="map">
         </div>
@@ -223,12 +189,133 @@ else if($biz==2){
   </header>
   <script>
     var map;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 37.4865570, lng: 126.802001},
-        zoom: 8
+
+    function load(sVal) {
+
+          var infoWindow = new google.maps.InfoWindow;
+          initMap();
+
+          if(sVal==""){
+                      // Change this depending on the name of your PHP file
+
+          }
+          else if(sVal==1){
+            downloadUrl("makexml.php", function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName("marker");
+            for (var i = 0; i < markers.length; i++) {
+              var id = markers[i].getAttribute("id");
+              console.log(id);
+              
+              var datex = markers[i].getAttribute("notice");
+              console.log(datex);
+              var point = new google.maps.LatLng(
+                  parseFloat(markers[i].getAttribute("lat")),
+                  parseFloat(markers[i].getAttribute("lon")));
+               //console.log(parseFloat(markers[i].getAttribute("lon"));
+                //console.log(parseFloat(markers[i].getAttribute("lat"));
+              var sats = markers[i].getAttribute("resname");
+             console.log(sats);
+                var html = "식당이름: "+sats+"공지사항 : "+ datex;
+               console.log(html);
+              var dtstr = "resname: " + sats  + " notice:  " + datex;
+               console.log(dtstr);
+              var marker = new google.maps.Marker({map: map,position: point,title: dtstr });
+              bindInfoWindow(marker, map, infoWindow, html);
+            }
+          });
+
+          }else if(sVal==2){
+            downloadUrl("makexml2.php", function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName("marker");
+            for (var i = 0; i < markers.length; i++) {
+              var id = markers[i].getAttribute("id");
+              console.log(id);
+              
+              var datex = markers[i].getAttribute("notice");
+              console.log(datex);
+              var point = new google.maps.LatLng(
+                  parseFloat(markers[i].getAttribute("lat")),
+                  parseFloat(markers[i].getAttribute("lon")));
+               //console.log(parseFloat(markers[i].getAttribute("lon"));
+                //console.log(parseFloat(markers[i].getAttribute("lat"));
+              var sats = markers[i].getAttribute("resname");
+             console.log(sats);
+              var html = "식당이름: "+sats+"공지사항 : "+ datex;
+               console.log(html);
+              var dtstr = "resname: " + sats  + " notice:  " + datex;
+               console.log(dtstr);
+              var marker = new google.maps.Marker({map: map,position: point,title: dtstr });
+              bindInfoWindow(marker, map, infoWindow, html);
+            }
+          });
+
+          }else if(sVal==3){
+            downloadUrl("makexml3.php", function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName("marker");
+            for (var i = 0; i < markers.length; i++) {
+              var id = markers[i].getAttribute("id");
+              console.log(id);
+              
+              var datex = markers[i].getAttribute("notice");
+              console.log(datex);
+              var point = new google.maps.LatLng(
+                  parseFloat(markers[i].getAttribute("lat")),
+                  parseFloat(markers[i].getAttribute("lon")));
+               //console.log(parseFloat(markers[i].getAttribute("lon"));
+                //console.log(parseFloat(markers[i].getAttribute("lat"));
+              var sats = markers[i].getAttribute("resname");
+             console.log(sats);
+              var html = "식당이름: "+sats+"공지사항 : "+ datex;
+               console.log(html);
+              var dtstr = "resname: " + sats  + " notice:  " + datex;
+               console.log(dtstr);
+              var marker = new google.maps.Marker({map: map,position: point,title: dtstr });
+              bindInfoWindow(marker, map, infoWindow, html);
+            }
+          });
+
+
+          }
+
+
+
+
+
+        }
+function bindInfoWindow(marker, map, infoWindow, html) {
+      google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
       });
     }
+
+function downloadUrl(url, callback) {
+      var request = window.ActiveXObject ?
+          new ActiveXObject('Microsoft.XMLHTTP') :
+          new XMLHttpRequest;
+
+      request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+          request.onreadystatechange = doNothing;
+          callback(request, request.status);
+        }
+      };
+
+      request.open('GET', url, true);
+      request.send(null);
+    }
+
+function doNothing() {}
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 37.4865570, lng: 126.802001},
+    zoom: 12
+    });
+  }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBW7DkrFwTai2f_ZVwEv3PqFcl8UcZ-YlA&callback=initMap"
   async defer></script>
