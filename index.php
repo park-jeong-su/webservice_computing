@@ -30,7 +30,7 @@ debug_to_console($email);
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="initial-scale=1.0">
-  <title>Mountain King - Bootstrap Template</title>
+  <title>Restaurant Reservation</title>
   <!-- Bootstrap core CSS -->
   <link href="bootstrap/css/theme.css" rel="stylesheet">
   <!-- Custom styles for this template -->
@@ -338,10 +338,10 @@ else{
           </div>
         </div>
         <div class="jumbotron">
-          <h1><small>In the hall of the</small></br>
-            <strong>Mountain King</strong></h1>
-            <p>This is a simple hero unit, a simple jumbotron-style component for<br>
-              calling extra attention to featured content or information.</p>
+          <h1><small></small></br>
+            <strong>Restaurant Reservation</strong></h1>
+            <p>이 서비스는 식당 예약 서비스로, 식당에 직접 가지 않고 식당 정보를 알고 테이블의 현황을 알 수 있습니다.<br>
+              </p>
 
 
               <form class="form-horizontal">
